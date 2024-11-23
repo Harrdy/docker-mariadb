@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:latest
+    container_name: mariadb
+    networks:
+      backend:
+      frontend:
+    environment:
+      - PUID=99
+      - PGID=100
+      - TZ=Europe/Berlin
+    volumes:
+      - ${MOUNT_ROOT}/mariadb:/config
+    ports:
+      - 3306:3306
+
+networks:
+  backend:
+    external: true
+  frontend:
+    external: true
+    
